@@ -65,7 +65,16 @@ namespace itg
         s.depthStencilInternalFormat = GL_DEPTH_COMPONENT24;
         s.depthStencilAsTexture = true;
         raw.allocate(s);
-        
+		
+		//protect from FRAMEBUFFER_INCOMPLETE_ATTACHMENT causing an openGL error that stops the shaders from compiling
+		
+		GLenum errCode;
+		const GLubyte *errString;
+		if ((errCode = glGetError()) != GL_NO_ERROR) {
+			errString = gluErrorString(errCode);
+			cout<<"ofxPostProcessing: OpenGL Error: "<<errString<<"\n"<<endl;
+		}
+		
         numProcessedPasses = 0;
         currentReadFbo = 0;
         flip = true;
