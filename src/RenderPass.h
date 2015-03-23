@@ -44,8 +44,11 @@
 
 namespace itg
 {
+#if (_MSC_VER || _LIBCPP_VERSION)
+#else
     using namespace tr1;
-    
+#endif
+	
     class RenderPass
 #ifdef _ITG_TWEAKABLE
         : public Tweakable

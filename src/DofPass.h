@@ -36,8 +36,10 @@
 
 namespace itg
 {
+#if (_MSC_VER || _LIBCPP_VERSION)
+#else
     using namespace tr1;
-    
+#endif
     /**
      * @see https://github.com/mrdoob/three.js/blob/master/examples/js/shaders/BokehShader.js
      */
